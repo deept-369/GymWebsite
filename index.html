@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Your Fitness Journey Partner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF4B2B;  /* Energetic Orange */
+            --primary-dark: #E63E1F;
+            --secondary-color: #2B2D42; /* Deep Navy */
+            --accent-color: #FFD700;   /* Gold */
+            --text-dark: #2B2D42;
+            --text-light: #FFFFFF;
+            --bg-light: #F8F9FA;
+            --bg-dark: #1A1B26;
+            --success-color: #2ECC71;
+            --gradient-primary: linear-gradient(135deg, #FF4B2B, #FF416C);
+            --gradient-dark: linear-gradient(135deg, #2B2D42, #1A1B26);
+        }
+
+        body {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--gradient-primary);
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 75, 43, 0.3), rgba(255, 215, 0, 0.3));
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 800;
+            line-height: 1.2;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: slideInRight 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.5s backwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 75, 43, 0.5);
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down i {
+            color: var(--text-light);
+            font-size: 24px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            margin: 15px auto 40px;
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 50px;
+            color: #666;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--text-light);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            border: 1px solid rgba(255, 75, 43, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 75, 43, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 75, 43, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            color: var(--primary-color);
+            font-size: 60px;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 75, 43, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-card:hover .feature-icon::after {
+            transform: translate(-50%, -50%) scale(1.2);
+            background: rgba(255, 75, 43, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+
+        .feature-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover h3::after {
+            width: 60px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover p {
+            color: #444;
+        }
+
+        /* Programs Section */
+        .programs {
+            background-color: var(--bg-light);
+            padding: 100px 0;
+        }
+
+        .programs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .program-card {
+            background-color: var(--text-light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 75, 43, 0.1);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .program-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .program-badge {
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .program-content {
+            padding: 30px;
+        }
+
+        .program-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .program-card p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .program-features {
+            margin-bottom: 25px;
+        }
+        
+        .program-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .program-feature i {
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .program-button {
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .program-button:hover {
+            background: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Nutrition Section */
+        .nutrition {
+            background-color: var(--bg-light);
+            padding: 100px 0;
+        }
+
+        .nutrition-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .nutrition-card {
+            background-color: var(--text-light);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(255, 75, 43, 0.1);
+        }
+        
+        .nutrition-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .nutrition-icon {
+            color: var(--primary-color);
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .nutrition-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .nutrition-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .nutrition-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nutrition-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nutrition-features li i {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #2ecc71;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .testimonial-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--text-light);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            border: 1px solid rgba(255, 75, 43, 0.1);
+        }
+        
+        .testimonial-card:before {
+            content: '\201C';
+            font-size: 80px;
+            color: rgba(255, 75, 43, 0.1);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #555;
+            position: relative;
+            z-index: 1;
+            line-height: 1.8;
+        }
+
+        .testimonial-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+            border: 3px solid #2ecc71;
+        }
+        
+        .testimonial-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-achievement {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Trainers Section */
+        .trainers {
+            background-color: var(--bg-light);
+            padding: 100px 0;
+        }
+        
+        .trainers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .trainer-card {
+            background-color: var(--text-light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 75, 43, 0.1);
+        }
+        
+        .trainer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .trainer-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .trainer-content {
+            padding: 30px 20px;
+        }
+        
+        .trainer-name {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .trainer-role {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .trainer-desc {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .trainer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .trainer-social a {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .trainer-social a:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: var(--text-light);
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .cta-section h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-secondary {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-secondary:hover {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 80px 0 40px;
+            scroll-margin-top: 70px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            padding: 0 20px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-col ul li a i {
+            margin-right: 10px;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .footer-about p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-newsletter p {
+            color: #bbb;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .newsletter-button {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .newsletter-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            color: #bbb;
+            font-size: 14px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+        }
+
+        /* Chat button */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-dark);
+        }
+
+        .chat-icon {
+            font-size: 24px;
+        }
+
+        /* Chat container */
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: slideIn 0.3s forwards;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Chat header */
+        .chat-header {
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            margin: 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-title i {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .close-chat {
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-chat:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Messages area */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 20px;
+            position: relative;
+            clear: both;
+            line-height: 1.5;
+        }
+
+        .bot-message {
+            background-color: #f1f0f0;
+            float: left;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            float: right;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .user-message .message-time {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            padding: 15px;
+            background-color: #f1f0f0;
+            border-radius: 20px;
+            float: left;
+            margin-bottom: 20px;
+            border-bottom-left-radius: 5px;
+            width: 65px;
+        }
+
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: #777;
+            display: inline-block;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Input area */
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input input:focus {
+            border-color: #2ecc71;
+            box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+        }
+
+        .send-button {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255, 75, 43, 0.3);
+        }
+        
+        .send-button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 998;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary-dark);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .cta-section h2 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--gradient-primary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .chat-container {
+                width: 300px;
+                bottom: 80px;
+                right: 10px;
+            }
+            
+            .feature-card, .program-card, .testimonial-card {
+                padding: 25px 20px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .cta-button, .cta-secondary {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                height: 500px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+
+            .chat-container {
+                width: calc(100% - 20px);
+                right: 10px;
+                bottom: 70px;
+            }
+            
+            .chat-button {
+                right: 20px;
+                bottom: 20px;
+            }
+            
+            .back-to-top {
+                right: 20px;
+                bottom: 90px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Section positioning */
+        section {
+            scroll-margin-top: 70px; /* Adjust this value based on your navbar height */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo"><i class="fas fa-dumbbell"></i>FitLife</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#nutrition">Nutrition</a></li>
+                <li><a href="#trainers">Trainers</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Body, Transform Your Life</h1>
+            <p>Join FitLife today and start your journey to a healthier, stronger you with personalized workout plans and nutrition guidance.</p>
+            <a href="#" class="cta-button">Start Your Free Trial</a>
+        </div>
+        <div class="scroll-down">
+            <a href="#features"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">Why Choose FitLife?</h2>
+        <p class="section-subtitle">At FitLife, we're committed to helping you achieve your fitness goals with our comprehensive approach to health and wellness.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-dumbbell"></i></div>
+                <h3>Personalized Workouts</h3>
+                <p>Get customized workout plans tailored to your goals, fitness level, and schedule.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+                <h3>Nutrition Planning</h3>
+                <p>Receive personalized meal plans and nutrition advice to support your fitness journey.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Expert Trainers</h3>
+                <p>Work with certified trainers who provide guidance and motivation throughout your journey.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Progress Tracking</h3>
+                <p>Monitor your progress with detailed analytics and achievement milestones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <div class="programs-container">
+            <h2 class="section-title">Our Programs</h2>
+            <p class="section-subtitle">Choose from our variety of specialized programs designed to help you reach your fitness goals.</p>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop')"></div>
+                    <div class="program-badge">Most Popular</div>
+                    <div class="program-content">
+                        <h3>Weight Loss Program</h3>
+                        <p>Comprehensive program focused on sustainable weight loss through exercise and nutrition.</p>
+                        <div class="program-features">
+                            <div class="program-feature"><i class="fas fa-check"></i> Personalized workout plans</div>
+                            <div class="program-feature"><i class="fas fa-check"></i> Meal planning guide</div>
+                            <div class="program-feature"><i class="fas fa-check"></i> Progress tracking</div>
+                        </div>
+                        <a href="#" class="program-button">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop')"></div>
+                    <div class="program-content">
+                        <h3>Strength Training</h3>
+                        <p>Build muscle and increase strength with our specialized strength training program.</p>
+                        <div class="program-features">
+                            <div class="program-feature"><i class="fas fa-check"></i> Progressive overload</div>
+                            <div class="program-feature"><i class="fas fa-check"></i> Form guidance</div>
+                            <div class="program-feature"><i class="fas fa-check"></i> Recovery protocols</div>
+                        </div>
+                        <a href="#" class="program-button">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop')"></div>
+                    <div class="program-content">
+                        <h3>Flexibility & Yoga</h3>
+                        <p>Improve flexibility and reduce stress with our yoga and stretching program.</p>
+                        <div class="program-features">
+                            <div class="program-feature"><i class="fas fa-check"></i> Guided yoga sessions</div>
+                            <div class="program-feature"><i class="fas fa-check"></i> Stretching routines</div>
+                            <div class="program-feature"><i class="fas fa-check"></i> Meditation practices</div>
+                        </div>
+                        <a href="#" class="program-button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Section -->
+    <section id="nutrition" class="nutrition">
+        <div class="nutrition-container">
+            <h2 class="section-title">Nutrition Guidance</h2>
+            <p class="section-subtitle">Fuel your body with the right nutrition to maximize your fitness results</p>
+            <div class="nutrition-grid">
+                <div class="nutrition-card">
+                    <div class="nutrition-icon"><i class="fas fa-apple-alt"></i></div>
+                    <h3>Personalized Meal Plans</h3>
+                    <p>Get customized meal plans based on your goals, dietary preferences, and lifestyle.</p>
+                    <ul class="nutrition-features">
+                        <li><i class="fas fa-check"></i> Balanced macronutrients</li>
+                        <li><i class="fas fa-check"></i> Portion control guidance</li>
+                        <li><i class="fas fa-check"></i> Shopping lists included</li>
+                    </ul>
+                </div>
+                <div class="nutrition-card">
+                    <div class="nutrition-icon"><i class="fas fa-book-medical"></i></div>
+                    <h3>Nutrition Education</h3>
+                    <p>Learn about proper nutrition through our comprehensive educational resources.</p>
+                    <ul class="nutrition-features">
+                        <li><i class="fas fa-check"></i> Understanding macros</li>
+                        <li><i class="fas fa-check"></i> Reading food labels</li>
+                        <li><i class="fas fa-check"></i> Meal timing strategies</li>
+                    </ul>
+                </div>
+                <div class="nutrition-card">
+                    <div class="nutrition-icon"><i class="fas fa-user-md"></i></div>
+                    <h3>Dietitian Support</h3>
+                    <p>Work with certified dietitians for personalized nutrition advice and support.</p>
+                    <ul class="nutrition-features">
+                        <li><i class="fas fa-check"></i> One-on-one consultations</li>
+                        <li><i class="fas fa-check"></i> Progress monitoring</li>
+                        <li><i class="fas fa-check"></i> Dietary adjustments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2 class="section-title">Success Stories</h2>
+        <p class="section-subtitle">See what our members have achieved with FitLife</p>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "FitLife transformed my approach to fitness. The personalized programs and support from trainers helped me achieve results I never thought possible."
+                </div>
+                <div class="testimonial-info">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop')"></div>
+                    <div class="testimonial-meta">
+                        <div class="testimonial-author">Sarah Johnson</div>
+                        <div class="testimonial-achievement">Lost 30 lbs in 6 months</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "The nutrition guidance and workout plans are top-notch. I've gained strength and confidence while learning sustainable healthy habits."
+                </div>
+                <div class="testimonial-info">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop')"></div>
+                    <div class="testimonial-meta">
+                        <div class="testimonial-author">Michael Chen</div>
+                        <div class="testimonial-achievement">Gained 15 lbs of muscle</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "The community support and expert guidance make FitLife stand out. I've achieved my fitness goals and made lifelong friends along the way."
+                </div>
+                <div class="testimonial-info">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop')"></div>
+                    <div class="testimonial-meta">
+                        <div class="testimonial-author">Emma Davis</div>
+                        <div class="testimonial-achievement">Completed first marathon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="trainers">
+        <div class="trainers-container">
+            <h2 class="section-title">Meet Our Trainers</h2>
+            <p class="section-subtitle">Our certified trainers are here to guide you on your fitness journey</p>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-image" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=150&auto=format&fit=crop')"></div>
+                    <div class="trainer-content">
+                        <h3 class="trainer-name">David Wilson</h3>
+                        <div class="trainer-role">Strength Specialist</div>
+                        <p class="trainer-desc">Certified personal trainer with 8 years of experience in strength training and muscle building.</p>
+                        <div class="trainer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image" style="background-image: url('https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=150&auto=format&fit=crop')"></div>
+                    <div class="trainer-content">
+                        <h3 class="trainer-name">Lisa Martinez</h3>
+                        <div class="trainer-role">Yoga Expert</div>
+                        <p class="trainer-desc">Experienced yoga instructor specializing in flexibility and mindfulness training.</p>
+                        <div class="trainer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=150&auto=format&fit=crop')"></div>
+                    <div class="trainer-content">
+                        <h3 class="trainer-name">James Thompson</h3>
+                        <div class="trainer-role">Cardio Specialist</div>
+                        <p class="trainer-desc">Former professional athlete turned trainer, specializing in endurance and cardio training.</p>
+                        <div class="trainer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Ready to Start Your Fitness Journey?</h2>
+            <p>Join FitLife today and transform your body and mind with our expert guidance and support.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">Start Free Trial</a>
+                <a href="#" class="cta-secondary">View Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>About FitLife</h4>
+                <p>FitLife is your partner in achieving your fitness goals. We provide personalized workout plans, nutrition guidance, and expert support to help you transform your life.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nutrition</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Trainers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Fitness Street, Gym City</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> +1 234 567 890</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> info@fitlife.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to our newsletter for fitness tips, nutrition advice, and special offers.</p>
+                <div class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email">
+                    <button class="newsletter-button"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 FitLife. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chat Button -->
+    <div class="chat-button" id="chatButton">
+        <i class="fas fa-comments chat-icon"></i>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3 class="chat-title"><i class="fas fa-robot"></i>FitLife Assistant</h3>
+            <div class="close-chat" id="closeChat">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                Hello! I'm your FitLife assistant. How can I help you today?
+                <div class="message-time">Just now</div>
+            </div>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button class="send-button" id="sendButton">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // DOM elements
+        const chatButton = document.getElementById('chatButton');
+        const chatContainer = document.getElementById('chatContainer');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Toggle chat window
+        chatButton.addEventListener('click', () => {
+            chatContainer.style.display = 'flex';
+            chatButton.style.display = 'none';
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+            chatButton.style.display = 'flex';
+        });
+
+        // Send message function
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+
+            // Add user message to chat
+            addMessage(message, true);
+            messageInput.value = '';
+
+            // Show typing indicator
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate bot response after a delay
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                
+                // Fitness-specific bot responses
+                let botResponse = getBotResponse(message);
+                addMessage(botResponse, false);
+            }, 1500);
+        }
+
+        // Add message to chat
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = `
+                ${text}
+                <div class="message-time">${new Date().toLocaleTimeString()}</div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Fitness-specific bot response logic
+        function getBotResponse(message) {
+            message = message.toLowerCase();
+            
+            // Greeting responses
+            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                return "Hello! I'm your FitLife assistant, ready to help you achieve your fitness goals! I can provide information about:\n- Personalized workout programs\n- Nutrition and meal planning\n- Trainer consultations\n- Membership options\n- Facility information\nWhat would you like to know more about?";
+            } 
+            // General help
+            else if (message.includes('help')) {
+                return "I'm here to help with your fitness journey! Here's what I can assist you with:\n\n1. Programs & Training:\n- Weight loss programs\n- Muscle building plans\n- Flexibility & mobility training\n- Sports-specific training\n\n2. Nutrition:\n- Meal planning\n- Dietary advice\n- Supplement guidance\n\n3. Support:\n- Trainer consultations\n- Progress tracking\n- Equipment guidance\n\nWhat specific area would you like to learn more about?";
+            }
+            // Programs information
+            else if (message.includes('program') || message.includes('plan') || message.includes('membership')) {
+                return "We offer several specialized programs to help you achieve your fitness goals:\n\n1. Weight Loss Journey ($89/month):\n- 12-week structured program\n- Weekly progress tracking\n- Personalized meal plans\n- 2 personal training sessions\n- Group workout sessions\n\n2. Muscle & Strength ($129/month):\n- Progressive resistance training\n- Supplement guidance\n- Recovery protocols\n- 3 personal training sessions\n- Nutrition consultation\n\n3. Flexibility & Mobility ($79/month):\n- Yoga and stretching classes\n- Mobility workshops\n- Injury prevention guidance\n- 1 personal training session\n\nWould you like detailed information about any of these programs?";
+            }
+            // Weight loss specific
+            else if (message.includes('weight loss') || message.includes('lose weight') || message.includes('fat loss')) {
+                return "Our Weight Loss Journey program is designed for sustainable results:\n\nKey Features:\n- Customized workout plans combining cardio and strength training\n- Personalized meal plans with calorie tracking\n- Weekly progress monitoring and adjustments\n- 2 personal training sessions per month\n- Group workout sessions for motivation\n- Nutrition workshops and cooking demos\n\nProgram Duration: 12 weeks\nPrice: $89/month\n\nCommon Questions:\n1. How much weight can I expect to lose?\n- Average 1-2 pounds per week\n- Results vary based on commitment\n\n2. What's included in the meal plans?\n- Breakfast, lunch, dinner, and snacks\n- Shopping lists and recipes\n- Restaurant dining guides\n\nWould you like to schedule a free consultation to discuss your specific goals?";
+            }
+            // Muscle building specific
+            else if (message.includes('muscle') || message.includes('strength') || message.includes('build') || message.includes('bulk')) {
+                return "Our Muscle & Strength program focuses on building lean muscle mass:\n\nProgram Components:\n- Progressive resistance training\n- Periodized workout plans\n- Supplement guidance\n- Recovery protocols\n- 3 personal training sessions\n- Nutrition consultation\n\nTraining Split:\n- Day 1: Chest & Triceps\n- Day 2: Back & Biceps\n- Day 3: Legs\n- Day 4: Shoulders & Arms\n- Day 5: Full Body\n\nNutrition Guidelines:\n- High protein diet\n- Caloric surplus\n- Meal timing strategies\n- Supplement recommendations\n\nPrice: $129/month\n\nWould you like to learn more about the specific exercises or nutrition guidelines?";
+            }
+            // Flexibility specific
+            else if (message.includes('flexibility') || message.includes('mobility') || message.includes('stretch') || message.includes('yoga')) {
+                return "Our Flexibility & Mobility program improves your range of motion:\n\nProgram Features:\n- Yoga classes (3x/week)\n- Dynamic stretching routines\n- Mobility workshops\n- Injury prevention guidance\n- 1 personal training session\n\nClass Types:\n1. Beginner Yoga\n- Basic poses and breathing\n- Gentle stretching\n- Meditation basics\n\n2. Advanced Flexibility\n- Deep stretching techniques\n- Mobility exercises\n- Recovery protocols\n\n3. Mobility & Movement\n- Joint health\n- Movement patterns\n- Balance training\n\nPrice: $79/month\n\nWould you like to know more about any specific class or technique?";
+            }
+            // Nutrition queries
+            else if (message.includes('nutrition') || message.includes('diet') || message.includes('food') || message.includes('eat')) {
+                return "Our nutrition program is designed for sustainable results:\n\nServices:\n1. Personalized Meal Plans\n- Based on your goals and preferences\n- Includes shopping lists\n- Restaurant dining guides\n\n2. Nutrition Education\n- Understanding macros\n- Reading food labels\n- Meal timing strategies\n- Supplement guidance\n\n3. Dietitian Support\n- One-on-one consultations\n- Progress monitoring\n- Dietary adjustments\n\nCommon Questions:\n1. Do I need to count calories?\n- We focus on portion control\n- Quality over quantity\n\n2. What about supplements?\n- Personalized recommendations\n- Quality assurance\n- Timing guidance\n\nWould you like to speak with a registered dietitian for personalized advice?";
+            }
+            // Trainer inquiries
+            else if (message.includes('trainer') || message.includes('coach') || message.includes('instructor')) {
+                return "Our certified trainers are here to guide you:\n\nTrainer Specialties:\n1. Strength Training\n- Muscle building\n- Power lifting\n- Olympic lifting\n\n2. Weight Loss\n- Cardio conditioning\n- Circuit training\n- HIIT workouts\n\n3. Flexibility & Mobility\n- Yoga instruction\n- Stretching techniques\n- Injury prevention\n\nTraining Options:\n- One-on-one sessions\n- Small group training\n- Virtual coaching\n\nPricing:\n- Single session: $75\n- 10-pack: $650\n- Monthly unlimited: $299\n\nWould you like to schedule a free consultation with a trainer?";
+            }
+            // Pricing information
+            else if (message.includes('price') || message.includes('cost') || message.includes('pricing') || message.includes('fee')) {
+                return "Here are our membership options:\n\n1. Basic Membership ($49/month):\n- Gym access\n- Basic equipment usage\n- Locker room access\n- Free parking\n\n2. Program Membership ($89/month):\n- All basic features\n- Program-specific training\n- Group classes\n- Basic nutrition guidance\n\n3. Premium Membership ($149/month):\n- All program features\n- Personal training sessions\n- Nutrition consultation\n- Priority class booking\n- Spa access\n\nSpecial Offers:\n- 7-day free trial\n- Student discounts (20% off)\n- Military discounts (15% off)\n- Annual membership savings\n\nWould you like to know more about any specific membership option?";
+            }
+            // Schedule/hours
+            else if (message.includes('hours') || message.includes('schedule') || message.includes('open') || message.includes('time')) {
+                return "Our facility hours and scheduling options:\n\nRegular Hours:\n- Monday-Friday: 5AM - 10PM\n- Saturday: 7AM - 8PM\n- Sunday: 7AM - 8PM\n\nClass Schedule:\n- Morning classes: 6AM - 11AM\n- Afternoon classes: 12PM - 5PM\n- Evening classes: 6PM - 9PM\n\nVirtual Options:\n- 24/7 online coaching\n- On-demand workouts\n- Live streaming classes\n\nHoliday Hours:\n- Christmas Eve: 7AM - 3PM\n- New Year's Day: 8AM - 6PM\n- Thanksgiving: Closed\n\nWould you like to see the current class schedule or book a session?";
+            }
+            // Location
+            else if (message.includes('location') || message.includes('address') || message.includes('directions') || message.includes('where')) {
+                return "We have multiple locations to serve you:\n\n1. Main Facility:\n123 Fitness Avenue\nGym City, ST 12345\n\n2. Downtown Location:\n456 Workout Street\nGym City, ST 12345\n\n3. West Side Branch:\n789 Exercise Road\nGym City, ST 12345\n\nAmenities at each location:\n- Free parking\n- Locker rooms\n- Child care\n- Cafe\n- Pro shop\n\nWould you like:\n- Directions to a specific location?\n- Information about facility amenities?\n- Virtual tour of the facilities?";
+            }
+            // Equipment questions
+            else if (message.includes('equipment') || message.includes('machines') || message.includes('weights')) {
+                return "Our facilities feature state-of-the-art equipment:\n\nCardio Area:\n- Treadmills\n- Ellipticals\n- Stationary bikes\n- Rowing machines\n- Stairmasters\n\nStrength Training:\n- Free weights\n- Smith machines\n- Cable stations\n- Power racks\n- Resistance machines\n\nFunctional Training:\n- TRX systems\n- Kettlebells\n- Medicine balls\n- Battle ropes\n- Plyometric boxes\n\nSpecialized Areas:\n- Olympic lifting platform\n- Boxing ring\n- Yoga studio\n- Indoor track\n- Swimming pool\n\nWould you like to know more about any specific equipment or area?";
+            }
+            // Beginners
+            else if (message.includes('beginner') || message.includes('start') || message.includes('new')) {
+                return "Welcome to FitLife! Our New to Fitness program is perfect for beginners:\n\nProgram Features:\n1. Orientation Session\n- Facility tour\n- Equipment introduction\n- Safety guidelines\n\n2. Beginner-Friendly Workouts\n- Basic exercises\n- Proper form guidance\n- Progressive difficulty\n\n3. Support System\n- Dedicated beginner coach\n- Weekly check-ins\n- Progress tracking\n\nCommon Questions:\n1. What should I wear?\n- Comfortable athletic clothing\n- Supportive shoes\n- Water bottle\n\n2. How often should I start?\n- 2-3 times per week\n- Gradual progression\n- Rest days important\n\nWould you like to schedule an orientation session?";
+            }
+            // Injury or medical concerns
+            else if (message.includes('injury') || message.includes('pain') || message.includes('medical') || message.includes('doctor')) {
+                return "Your safety is our priority. Here's how we handle injuries and medical concerns:\n\n1. Rehabilitation Services:\n- Specialized trainers\n- Physical therapy coordination\n- Modified exercise programs\n\n2. Safety Protocols:\n- Medical history review\n- Movement assessment\n- Regular check-ins\n\n3. Specialized Programs:\n- Post-injury recovery\n- Chronic pain management\n- Joint health focus\n\nImportant Notes:\n- Always consult your doctor\n- Inform trainers of conditions\n- Start gradually\n- Listen to your body\n\nWould you like to speak with our rehabilitation specialist?";
+            }
+            // Contact information
+            else if (message.includes('contact') || message.includes('email') || message.includes('phone') || message.includes('call')) {
+                return "Here's how to reach us:\n\nCustomer Service:\n- Phone: (555) 123-4567\n- Email: support@fitlife.com\n- Hours: Mon-Fri 8AM-8PM\n\nEmergency Contact:\n- After-hours: (555) 987-6543\n- Security: (555) 456-7890\n\nSocial Media:\n- Instagram: @fitlife\n- Facebook: FitLife Fitness\n- Twitter: @fitlife\n\nResponse Times:\n- Email: Within 24 hours\n- Phone: Immediate during hours\n- Social Media: Within 12 hours\n\nWould you like to:\n- Schedule a call?\n- Send an email?\n- Connect on social media?";
+            }
+            // Thank you responses
+            else if (message.includes('thank')) {
+                return "You're welcome! Remember, consistency is key to reaching your fitness goals. Is there anything else you'd like to know about:\n- Programs and pricing\n- Nutrition and meal planning\n- Trainer availability\n- Facility amenities\n- Class schedules";
+            }
+            // Goodbye responses
+            else if (message.includes('bye') || message.includes('goodbye')) {
+                return "Thank you for chatting with FitLife! Here's a quick reminder:\n\n- Stay consistent with your workouts\n- Focus on proper nutrition\n- Get adequate rest\n- Stay hydrated\n- Track your progress\n\nWe're here to support your fitness journey! Have a great day and keep moving!";
+            }
+            // Default response
+            else {
+                return "I'm not sure I understand your question. Here are some topics I can help with:\n\n1. Programs & Training\n2. Nutrition & Diet\n3. Trainer Information\n4. Membership Options\n5. Facility Details\n6. Class Schedules\n7. Equipment Usage\n8. Safety Guidelines\n\nPlease ask about any of these topics or rephrase your question!";
+            }
+        }
+
+        // Event listeners for sending messages
+        sendButton.addEventListener('click', sendMessage);
+        
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Focus input when chat opens
+        chatButton.addEventListener('click', () => {
+            setTimeout(() => {
+                messageInput.focus();
+            }, 100);
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
